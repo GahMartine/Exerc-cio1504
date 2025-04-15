@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moeda</title>
+    <!-- Importando o Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Conversor de Moeda</h1>
+        <div class="form-group">
+            <label for="realValue">Valor em Real (BRL):</label>
+            <input type="number" id="realValue" class="form-control" placeholder="Digite o valor em Real" required>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="converter()">Converter</button>
+
+        <div class="result mt-4" id="resultDolar">
+            <strong>Dólar (USD):</strong> <span id="dolarValue">0.00</span>
+        </div>
+        <div class="result" id="resultEuro">
+            <strong>Euro (EUR):</strong> <span id="euroValue">0.00</span>
+        </div>
+        <div class="result" id="resultLibra">
+            <strong>Libra Esterlina (GBP):</strong> <span id="libraValue">0.00</span>
+        </div>
+    </div>
+
+    <!-- Importando o Bootstrap e o jQuery (opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function converter() {
+            // Valores de câmbio fixos
+            const taxaDolar = 0.19; // 1 Real = 0.19 USD
+            const taxaEuro = 0.17;   // 1 Real = 0.17 EUR
+            const taxaLibra = 0.15;  // 1 Real = 0.15 GBP
+
+            // Obter o valor inserido pelo usuário
+            const real = parseFloat(document.getElementById("realValue").value);
+            if (isNaN(real) || real <= 0) {
+                alert("Por favor, insira um valor válido em Real.");
+                return;
+            }
+
+            // Calcular as conversões
+            const dolar = real * taxaDolar;
+            const euro = real * taxaEuro;
+            const libra = real * taxaLibra;
+
+            // Exibir os resultados
+            document.getElementById("dolarValue").textContent = dolar.toFixed(2);
+            document.getElementById("euroValue").textContent = euro.toFixed(2);
+            document.getElementById("libraValue").textContent = libra.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
